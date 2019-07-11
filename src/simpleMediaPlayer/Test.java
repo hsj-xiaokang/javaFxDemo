@@ -47,7 +47,7 @@ public class Test extends Application {
 //        primaryStage.show();
 
 		  primaryStage.hide();
-		  SimpleMediaPlayer.popup(getClass().getResource("video/hsj-test-6.mp4").toString());
+		  SimpleMediaPlayer.popup(getClass().getResource("video/GoogleFuchsiaOS.mp4").toString());
 		 
 
 	}

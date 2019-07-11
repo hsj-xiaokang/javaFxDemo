@@ -308,20 +308,22 @@ public class PlayerController {
             Platform.runLater(new Runnable(){
                 @Override
                 public void run() {
-                    Duration currentTime = mediaPlayer.getCurrentTime();
-                    timeLB.setText(formatTime(currentTime,duration));    //设置时间标签
-                    processSD.setDisable(duration.isUnknown());   //无法读取时间是隐藏进度条
-                    if(!processSD.isDisabled() && duration.greaterThan(Duration.ZERO) && !processSD.isValueChanging()){
-                        processSD.setValue(currentTime.toMillis()/duration.toMillis() * 100);   //设置进度条
-                    }
-                    if(!volumeSD.isValueChanging()){
-                        volumeSD.setValue((int)Math.round(mediaPlayer.getVolume() *100));   //设置音量条
-                        if(mediaPlayer.getVolume() == 0){        //设置音量按钮
-                            setIcon(volumeBT,volOffIcon,20);
-                        }else{
-                            setIcon(volumeBT,volOnIcon,20);
-                        }
-                    }
+                   if(mediaPlayer != null) {
+                	   Duration currentTime = mediaPlayer.getCurrentTime();
+                       timeLB.setText(formatTime(currentTime,duration));    //设置时间标签
+                       processSD.setDisable(duration.isUnknown());   //无法读取时间是隐藏进度条
+                       if(!processSD.isDisabled() && duration.greaterThan(Duration.ZERO) && !processSD.isValueChanging()){
+                           processSD.setValue(currentTime.toMillis()/duration.toMillis() * 100);   //设置进度条
+                       }
+                       if(!volumeSD.isValueChanging()){
+                           volumeSD.setValue((int)Math.round(mediaPlayer.getVolume() *100));   //设置音量条
+                           if(mediaPlayer.getVolume() == 0){        //设置音量按钮
+                               setIcon(volumeBT,volOffIcon,20);
+                           }else{
+                               setIcon(volumeBT,volOnIcon,20);
+                           }
+                       }
+                   }
                 }
             });
         }
