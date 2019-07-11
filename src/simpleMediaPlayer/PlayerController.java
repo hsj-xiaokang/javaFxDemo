@@ -250,7 +250,7 @@ public class PlayerController {
         processSD.valueProperty().addListener(new ChangeListener<Number>(){
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                if(processSD.isValueChanging()){     //加入Slider正在改变的判定，否则由于update线程的存在，mediaPlayer会不停地回绕
+                if(processSD.isValueChanging() || processSD.isFocused()){     //加入Slider正在改变(新增点击聚焦时候)的判定，否则由于update线程的存在，mediaPlayer会不停地回绕
                     mediaPlayer.seek(duration.multiply(processSD.getValue()/100.0));
                 }
             }
