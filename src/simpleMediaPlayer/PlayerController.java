@@ -49,12 +49,22 @@ public class PlayerController {
 
 
     //控件素材图片
-    private String playIcon  = getClass().getResource("icon/play.png").toString();
-    private String pauseIcon  = getClass().getResource("icon/pause.png").toString();
-    private String stopIcon  = getClass().getResource("icon/stop.png").toString();
-    private String volOffIcon  = getClass().getResource("icon/volume_off.png").toString();
-    private String volOnIcon  = getClass().getResource("icon/volume_On.png").toString();
-    private String maxIcon  = getClass().getResource("icon/max.png").toString();
+	/*
+	 * private String playIcon = getClass().getResource("icon/play.png").toString();
+	 * private String pauseIcon =
+	 * getClass().getResource("icon/pause.png").toString(); private String stopIcon
+	 * = getClass().getResource("icon/stop.png").toString(); private String
+	 * volOffIcon = getClass().getResource("icon/volume_off.png").toString();
+	 * private String volOnIcon =
+	 * getClass().getResource("icon/volume_On.png").toString(); private String
+	 * maxIcon = getClass().getResource("icon/max.png").toString();
+	 */
+    private String playIcon  ="/simpleMediaPlayer/icon/play.png";
+    private String pauseIcon  = "/simpleMediaPlayer/icon/pause.png";
+    private String stopIcon  = "/simpleMediaPlayer/icon/stop.png";
+    private String volOffIcon  = "/simpleMediaPlayer/icon/volume_off.png";
+    private String volOnIcon  = "/simpleMediaPlayer/icon/volume_On.png";
+    private String maxIcon  = "/simpleMediaPlayer/icon/max.png";
 
     private MediaPlayer mediaPlayer;
     private Media media;
@@ -358,7 +368,7 @@ public class PlayerController {
 
     //为按钮获取图标
     private void setIcon(Button button,String path,int size){
-        Image icon = new Image(path);
+        Image icon = new Image(this.getClass().getResourceAsStream(path));
         ImageView imageView = new ImageView(icon);
         imageView.setFitWidth(size);
         imageView.setFitHeight((int)(size * icon.getHeight() / icon.getWidth()));

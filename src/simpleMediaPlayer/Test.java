@@ -1,5 +1,7 @@
 package simpleMediaPlayer;
 
+
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -20,11 +22,13 @@ public class Test extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		// 创建测试窗口
-		primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("icon/py.jpg")));
+		primaryStage.getIcons().add(new Image(  this.getClass().getResourceAsStream("/simpleMediaPlayer/icon/py.jpg") 
+		/* new ClassPathResource("icon/py.jpg").getURL().toString() */));
 		primaryStage.setTitle("视频播放");
 		Group root = new Group();
 		BorderPane pane = new BorderPane();
 		root.getChildren().add(pane);
+
 
 		HBox hbox = new HBox();
 		hbox.setAlignment(Pos.CENTER);
@@ -36,18 +40,18 @@ public class Test extends Application {
 
 		// 测试弹窗式调用
 		popup.setOnAction((ActionEvent e) -> {
-			SimpleMediaPlayer.popup(getClass().getResource("video/hsj-test-6.mp4").toString());
+			SimpleMediaPlayer.popup(/* getClass().getResource("video/hsj-test-6.mp4").toString() */"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
 		});
 		popup2.setOnAction((ActionEvent e) -> {
-			SimpleMediaPlayer.popup(getClass().getResource("video/hsj-test-6.mp4").toString(), 550, 400);
+			SimpleMediaPlayer.popup(/* getClass().getResource("video/hsj-test-6.mp4").toString()*/"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4", 550, 400 );
 		});
 
 		Scene scene = new Scene(root, 180, 25);
 		primaryStage.setScene(scene);
-//        primaryStage.show();
+        primaryStage.show();
 
-		  primaryStage.hide();
-		  SimpleMediaPlayer.popup(getClass().getResource("video/GoogleFuchsiaOS.mp4").toString());
+//		  primaryStage.hide();
+//		SimpleMediaPlayer.popup(/* getClass().getResource("video/GoogleFuchsiaOS.mp4").toString() */"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
 		 
 
 	}

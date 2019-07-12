@@ -2,6 +2,7 @@ package simpleMediaPlayer;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * create by Intellij IDEA
@@ -47,8 +49,16 @@ public class SimpleMediaPlayer extends AnchorPane {
     //构造函数私有，实例保存在静态域，只向外部提供静态调用
     private SimpleMediaPlayer(String mediaUrl){
         try {
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("player.fxml"));
-            Parent root = fxmlloader.load();   //将fxml节点添加到根节点中
+			/*
+			 * FXMLLoader fxmlloader = new
+			 * FXMLLoader(getClass().getResource("/simpleMediaPlayer/player.fxml"));
+			 */
+        	FXMLLoader fxmlloader = new FXMLLoader();	// 创建对象
+        	fxmlloader.setBuilderFactory(new JavaFXBuilderFactory());	// 设置BuilderFactory
+//        	fxmlloader.setLocation(Main.class.getResource(fxml));	// 设置路径基准
+            InputStream in = this.getClass().getResourceAsStream("/simpleMediaPlayer/player.fxml");
+            
+            Parent root = fxmlloader.load(in);   //将fxml节点添加到根节点中
             controller = fxmlloader.getController();
             this.getChildren().add(root);   //主类节点加入根节点
 
@@ -88,7 +98,7 @@ public class SimpleMediaPlayer extends AnchorPane {
         simpleMediaPlayer.getController().setScene(scene);
 
         Stage primaryStage = new Stage();
-        primaryStage.getIcons().add(new Image(simpleMediaPlayer.getClass().getResourceAsStream("icon/py.jpg")));
+        primaryStage.getIcons().add(new Image(simpleMediaPlayer.getClass().getResourceAsStream("/simpleMediaPlayer/icon/py.jpg")));
         primaryStage.setTitle("视频播放");
         primaryStage.setScene(scene);
 
